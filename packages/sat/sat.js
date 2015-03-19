@@ -18,6 +18,7 @@ log = function () {
     });
 }
 
+/*
 __.deepExtend = function (target, source) {
     for (var prop in source)
         if (prop in target)
@@ -27,6 +28,7 @@ __.deepExtend = function (target, source) {
     return target;
 }
 
+*/
 __.capitalize = function (string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -77,8 +79,8 @@ Sat.init = function () {
     var pages_in_file = module.exports;
     if ( Meteor.isServer ) {
         Sat.isServer = true;
-        __.deepExtend( Config, module.exports.ServerConfig );
-        delete module.exports.ServerConfig;
+        // __.deepExtend( Config, module.exports.ServerConfig );
+        // delete module.exports.ServerConfig;
     } else if ( Meteor.isClient ) {
         Sat.isClient = true;
         Router.configure({ layoutTemplate: 'layout' });
