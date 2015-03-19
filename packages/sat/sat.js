@@ -3,7 +3,7 @@ db = {}, Pages = {};
 Sat = { isServer: false, isClient: false };
 __ = this.__
 Config = this.Config
-module = { exports:{} } // why
+module = { exports:{} } // Sat runs before modules.
 
 if (Meteor.isServer)
     fs = Npm.require('fs') 
