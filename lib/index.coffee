@@ -1,5 +1,5 @@
 #!/usr/bin/env coffee
-
+#
 String::toDash = -> @.replace /([A-Z])/g, ($1) -> '-' + $1.toLowerCase()
 
 extend = ($source, $target) ->
