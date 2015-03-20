@@ -1,3 +1,4 @@
+#
 getMenu = (Config, Pages) ->
     _ = require 'underscore'
     _.templateSettings = interpolate: /\[(.+?)\]/g

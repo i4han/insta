@@ -1,3 +1,5 @@
+#
+
 resetMessages = ->
     Session.set 'login.errorMessage', null
     Session.set 'login.infoMessage' , null
