@@ -23,15 +23,15 @@ if (typeof Meteor === "undefined" || Meteor === null) {
 
 main = {
   autogen_prefix: 'auto_',
-  callback_port: 3003,
+  callback_port: 3300,
   local_config: 'local.coffee',
   init: function() {
     if ((typeof Meteor === "undefined" || Meteor === null) || Meteor.isServer) {
       this.home_dir = process.env.HOME + '/';
       this.workspace = this.home_dir + 'workspace/';
-      this.site_dir = this.workspace + 'site/';
+      this.site_dir = process.env.site ? this.workspace + process.env.site + '/' : process.env.SITE + '/';
       this.module_dir = this.workspace + 'lib/';
-      this.meteor_dir = this.workspace + 'app/';
+      this.meteor_dir = this.site_dir + 'app/';
       this.source_dir = this.meteor_dir + 'lib/';
       this.target_dir = this.meteor_dir + 'client/';
     }
@@ -98,6 +98,7 @@ local = {};
 
 local = {
   title: 'Application',
+  port_index: 1,
   home_url: 'circus-baboon.codio.io',
   index_file: 'index',
   other_files: [],
@@ -210,12 +211,13 @@ this.Config = {
       this.source_dir = main.source_dir;
       this.client_dir = main.target_dir;
       this.target_dir = main.target_dir;
-      this.site_dir = process.env.SITE ? process.env.SITE + '/' : main.site_dir;
+      this.site_dir = main.site_dir;
       this.build_dir = this.site_dir + 'build/';
       this.meteor_lib = this.meteor_dir + 'lib/';
-      this.package_dir = this.meteor_dir + 'packages/';
-      this.config_js_dir = this.package_dir + 'sat/';
-      this.sync_dir = this.meteor_lib;
+      this.packages = main.workspace + 'packages/';
+      this.site_packages = this.site_dir + 'app/packages/';
+      this.config_js_dir = this.site_dir + 'app/packages/sat/';
+      this.sync_dir = this.site_dir + 'app/lib/';
       this.config_js = this.config_js_dir + 'config.js';
       this.config_source = this.module_dir + 'config.coffee';
       this.index_module = this.site_dir + local.index_file;
@@ -223,7 +225,6 @@ this.Config = {
       this.local_module = this.site_dir + main.local_config;
       this.theme_source = this.module_dir + 'theme.coffee';
       this.header_source = this.module_dir + 'header.coffee';
-      this.storables = main.meteor_dir + 'private/storables';
       this.log_file = main.home_dir + '.log.io/satellite';
       this.set_prefix = '';
       this.autogen_prefix = main.autogen_prefix;
