@@ -9,7 +9,9 @@ template(name="layout")
 
 template(name="home")
     #content-wrapper
-        h1 Insta
+        h2 Sign up with UBER
+        .col-md-5
+            a(class="btn-info", href="https://uber.getber.com") Connect with Uber
         .row#items
             .col-md-12#pack
                 each items
@@ -62,6 +64,7 @@ template(name="log")
 
 template(name="submit")
     h2 Connected
+    p code is: {{code}}
 
 template(name="policy")
     h2 Privacy Policy
